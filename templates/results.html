@@ -1,8 +1,11 @@
 <h1>{{ question.question_text }}</h1>
 
 <ul>
+  <!-- 질문에 대한 해당 선택지를 모두 순회 -->
   {% for choice in question.choice_set.all %}
   <li>
+    <!-- 선택지 - 투표수 형태 -->
+    <!-- 단 복수 투표수일 경우 votes로 출력 -->
     {{ choice.choice_text }} - {{ choice.votes }} vote{{ choice.votes|pluralize }}
   </li>
   {% endfor %}

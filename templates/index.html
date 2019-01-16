@@ -1,13 +1,18 @@
+<!-- 질문이 있다면 -->
 {% if latest_question_list %}
   <ul>
+  <!-- 최근 5개 질문을 하나씩 순회 -->
   {% for question in latest_question_list %}
+    <!-- 하나씩 리스트에 담는다 -->
     <li>
+      <!-- 질문 텍스트에 상세페이지 링크 첨부 -->
       <a href="/{{ question.id }}/">
         {{ question.question_text }}
       </a>
     </li>
   {% endfor %}
   </ul>
+<!-- 질문이 없는 경우 출력 -->
 {% else %}
   <p>No polls are available.</p>
 {% endif %}

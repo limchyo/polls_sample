@@ -1,16 +1,24 @@
+<!-- 질문 객체에서 질문 내용만 출력 -->
 <h1>{{ question.question_text }}</h1>
 
+<!-- 만약 에러 메세지가 있다면(미선택 제출) -->
 {% if error_message %}
+  <!-- 선택하라는 텍스트 출력 -->
   <p><strong>{{ error_message }}</p>
 {% endif %}
 
+<!-- 투표 폼 -->
 <form action="{% url 'polls:vote' question.id %}" method="post">
   {% csrf_token %}
+  <!-- 해당 질문이 가지는 모든 선택지를 순회 -->
   {% for choice in question.choice_set.all %}
+  <!-- 선택 받을 수 있는 버튼 -->
   <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+  <!-- 선택지 내용을 출력 -->
   <label for="choice{{ forloop.counter }}">
     {{ choice.choice_text }}
   </label><br />
   {% endfor %}
+  <!-- 제출 버튼 -->
   <input type="submit" value="Vote" />
 </form>
